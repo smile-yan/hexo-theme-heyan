@@ -31,24 +31,31 @@
                 <%- post.title  %> 
             </a>
         </h2>
-        <div class="tag-hover">
-            <i class="fa fa-calendar"> </i> <small> <%- date( post.date , 'YYYY/MM/DD HH:mm') %> </small>
-            <i class="fa fa-folder-open"> </i> 
-                <% post.categories.each(category=>{ %>
-                    <a href="<%- url_for(category.path)  %> " class="link-dark text-decoration-none"> 
-                        <%- category.name  %> 
-                    </a>
-                <% }) %> 
-                
-            <i class="fa fa-tag"> </i> <a href="#" class="link-dark text-decoration-none"> <small>
-                <% post.tags.each(tag=>{ %>
-                    <a href="<%- url_for(tag.path) %>" class="link-dark text-decoration-none"> 
-                        <%- tag.name  %> 
-                    </a>
-                <% }) %> 
-            </small>
-        </a>
-        </div>
+
+
+    <div class="pb-0">
+        <i class="fa fa-calendar p-1"></i>
+        <%- date( post.date , 'YYYY/MM/DD HH:mm:ss') %> 
+
+        <i class="fa fa-folder-open p-1"> </i> 
+        <span class="tag-hover">
+            <% post.categories.each(category=>{ %>
+                <a href="<%- url_for(category.path)  %> " class="link-dark text-decoration-none"> 
+                    <%- category.name  %> 
+                </a>
+            <% }) %> 
+        </span>
+
+        <i class="fa fa-tag p-1"> </i>
+        <span class="tag-hover">
+            <% post.tags.each(tag=>{ %>
+                <a href="<%- url_for(tag.path) %>" class="link-dark text-decoration-none"> 
+                    <%- tag.name  %> 
+                </a>
+            <% }) %>
+        </span>
+    </div>
+
         <div class="pt-3 pe-4">
             <!-- 如果有摘要则显示摘要，没有就自己截取 -->
             <% if (post.excerpt) { %>

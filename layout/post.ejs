@@ -1,11 +1,32 @@
 <!-- 博客详情 -->
 <h2><%- page.title %></h2>
-<p><%- date(page.date , 'YYYY/MM/DD HH:mm:ss') %> </p>
+
+<div class="pb-3">
+    <i class="fa fa-calendar p-1"></i>
+    <%- date( page.date , 'YYYY/MM/DD HH:mm:ss') %> 
+
+    <i class="fa fa-folder-open p-1"> </i> 
+    <span class="tag-hover">
+        <% page.categories.each(category=>{ %>
+            <a href="<%- url_for(category.path)  %> " class="link-dark text-decoration-none"> 
+                <%- category.name  %> 
+            </a>
+        <% }) %> 
+    </span>
+
+    <i class="fa fa-tag p-1"> </i>
+    <span class="tag-hover">
+        <% page.tags.each(tag=>{ %>
+            <a href="<%- url_for(tag.path) %>" class="link-dark text-decoration-none"> 
+                <%- tag.name  %> 
+            </a>
+        <% }) %>
+    </span>
+</div>
+
 <%- page.content  %> 
 
 <div class="p-2 pe-4">
-  
-
     <% if (page.prev) { %> 
         <a href="<%- url_for(page.prev.path)  %>" class="btn btn-outline-secondary btn-sm float-start">
             <small>
@@ -13,8 +34,6 @@
             </small>
         </a>
     <% } %> 
-
-
     <% if (page.next) { %> 
         <a href="<%- url_for(page.next.path)%>" class="btn btn-outline-secondary btn-sm float-end" %>>
             <small>
