@@ -1,0 +1,27 @@
+<!-- 侧边栏 标签 -->
+<div class="card mb-3">
+    <h6 class="card-header tag-hover"><i class="fa fa-tag"></i> 标签
+        <% if (theme.widgets_default_show.tag.length < site.tags.length) { %> 
+            <a class="float-end link-secondary text-decoration-none" data-bs-toggle="collapse" data-bs-target="#tags" id="more-tag"> 所有标签 <i id="icon-more-tag" class="fa fa-angle-right"></i></a>
+        <% } %>
+    </h6>
+
+    <div class="card-body tag-hover">
+        <% var tags = site.tags.sort(theme.widgets_default_show.tag.sort_by,  
+                                     theme.widgets_default_show.tag.rule) %>
+        <% tags.each((tag, i)=>{ %>
+            <% if (i >= theme.widgets_default_show.tag.length) {return;} %> 
+            <a class="text-decoration-none border-0 d-inline-flex link-dark pt-0 pb-0 p-0" href="<%- url_for(tag.path)  %> ">
+                <%- tag.name %> <span class="badge bg-secondary float-end m-1"><%- tag.length %></span>
+            </a>
+        <% }) %>  
+
+        <span id="tags" class="collapse">
+            <% for (var i=theme.widgets_default_show.tag.length; i<tags.length; i++) { %>
+                <a class="text-decoration-none border-0 d-inline-flex link-dark pt-0 pb-0 p-0" href="<%-url_for(tags.data[i].path)%>">
+                    <%- tags.data[i].name %>  <span class="badge bg-secondary float-end m-1"><%- tags.data[i].length %></span>
+                </a>
+            <% } %>
+        </span>
+    </div>
+</div>

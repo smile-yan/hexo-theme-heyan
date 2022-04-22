@@ -1,0 +1,10 @@
+<%  var menus = theme.menu_left %>
+<%  if (place == 'right') { menus = theme.menu_right} %> 
+
+<% menus.forEach(menu=> { %>
+    <li class="nav-item">
+        <a class="nav-link" href="<%- url_for(menu.path) %>">
+            <i class="<%- menu.icon_class  %> "> </i> <%-  menu.title %>
+        </a>
+    </li>
+<% }) %> 

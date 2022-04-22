@@ -1,0 +1,25 @@
+<!-- 博客详情 -->
+<h2><%- page.title %></h2>
+<p><%- date(page.date , 'YYYY/MM/DD HH:mm:ss') %> </p>
+<%- page.content  %> 
+
+<div class="p-2 pe-4">
+  
+
+    <% if (page.prev) { %> 
+        <a href="<%- url_for(page.prev.path)  %>" class="btn btn-outline-secondary btn-sm float-start">
+            <small>
+                < 上一篇：<%- page.prev.title  %>
+            </small>
+        </a>
+    <% } %> 
+
+
+    <% if (page.next) { %> 
+        <a href="<%- url_for(page.next.path)%>" class="btn btn-outline-secondary btn-sm float-end" %>>
+            <small>
+                < 上一篇：<%- page.next.title  %>
+            </small>
+        </a>
+    <% } %> 
+</div>

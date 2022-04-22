@@ -1,0 +1,70 @@
+<!-- 主页 -->
+
+<% 
+    function generateExcerpt(post) {
+        var paragraph = theme.post_excerpt_paragraph
+        var max_excerpt_words = theme.max_excerpt_words
+        var br = 0
+        for (var i = 0; i < paragraph; i++) {
+            br = post.content.indexOf('\n',br+1)
+            if (br<0) {
+                break
+            } 
+        }
+        if (br<0) {
+            return ""
+        }
+
+        if (post.content.substring(0, br).length > max_excerpt_words) {
+            return post.content.substring(0, max_excerpt_words)
+        }
+
+        return post.content.substring(0, br)
+    }
+
+%> 
+
+<% page.posts.each(post=> { %>
+    <div class="pb-4 pt-4 tag-hover">
+        <h2 class="tag-hover">
+            <a href="<%- url_for(post.path) %>" class="link-dark text-decoration-none">
+                <%- post.title  %> 
+            </a>
+        </h2>
+        <div class="tag-hover">
+            <i class="fa fa-calendar"> </i> <small> <%- date( post.date , 'YYYY/MM/DD HH:mm') %> </small>
+            <i class="fa fa-folder-open"> </i> 
+                <% post.categories.each(category=>{ %>
+                    <a href="<%- url_for(category.path)  %> " class="link-dark text-decoration-none"> 
+                        <%- category.name  %> 
+                    </a>
+                <% }) %> 
+                
+            <i class="fa fa-tag"> </i> <a href="#" class="link-dark text-decoration-none"> <small>
+                <% post.tags.each(tag=>{ %>
+                    <a href="<%- url_for(tag.path) %>" class="link-dark text-decoration-none"> 
+                        <%- tag.name  %> 
+                    </a>
+                <% }) %> 
+            </small>
+        </a>
+        </div>
+        <div class="pt-3 pe-4">
+            <!-- 如果有摘要则显示摘要，没有就自己截取 -->
+            <% if (post.excerpt) { %>
+                <%- post.excerpt  %> 
+            <% } else { %>
+                <%- generateExcerpt(post)  %> 
+            <% } %> 
+        </div>
+        <div class="p-2 pe-4">
+            <a href="<%- url_for(post.path) %>" class="btn btn-outline-secondary btn-sm float-end" type="button">
+                阅读全文 <i class="fa fa-angle-double-right"></i>
+            </a>
+        </div>
+    </div>
+<% }) %> 
+
+
+<%- partial('_partial/paginator') %> 
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<%- partial('_partial/header') %> 
+ 
+<body>
+    <!-- 导航栏 -->
+    <%- partial('_partial/nav') %>
+
+    <main class="container">
+        <div class="row pt-3">
+            <!-- 文章 -->
+            <div class="col-sm-8">
+                <div class="markdown-section">
+                    <!-- 搜索结果 -->
+                    <div id="local-search-result"></div>
+                    <%- body %> 
+                </div>
+            </div>
+    
+            <!-- sidebar -->
+            <div class="col-sm-4">
+                <%- partial('_partial/sidebar')  %> 
+            </div>
+        </div>
+    </main>
+    
+    
+<!-- footer -->
+<%- partial('_partial/footer')  %> 
+</body> 
+</html>
+
+

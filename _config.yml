@@ -1,0 +1,69 @@
+# 导航栏
+menu_left:
+  - title: 主页
+    path: '' 
+    icon_class: 'fa fa-home'
+  - title: 归档
+    path: 'archives'
+    icon_class: 'fa fa-archive"'
+
+search: 
+  enable: true  # 是否使用搜索功能
+  placeholder: 搜索
+
+post_excerpt_paragraph: 1
+max_excerpt_words: 150
+
+
+menu_right:
+  - title: 关于
+    path: /about
+    icon_class: 'fa fa-user'
+
+
+# 侧边栏展示的内容以及顺序
+widgets:
+  - category
+  - tag
+  - recent
+  - links
+
+widgets_links:
+  - title: csdn
+    url: https://blog.csdn.net/smileyan9
+  - title: 笑颜网
+    url: https://smileyan.cn
+  - title: Hexo
+    url: https://hexo.io
+
+
+# 默认情况下展示的分类，标签，最近的
+# length 数目，超过部分折叠
+# sort_by 排序依据
+# rule 递增或递减
+widgets_default_show:
+  category:
+    length: 10
+    sort_by: length # length | name
+    rule: desc      # desc | asc
+  tag: 
+    length: 10
+    sort_by: name   # length | name
+    rule: desc      # desc | asc
+  recent:
+    length: 5
+    sort_by: date   # date | updated
+    rule: desc      # desc | asc
+
+# 是否使用 fancy | mathjax
+fancybox: true
+mathjax: true
+
+# copyright
+copyright:  Copyright © 2022
+            <a class="link-secondary text-decoration-none" href="https://smileyan.cn">
+                笑颜网
+            </a>
+
+# 备案号
+beian: 湘ICP备 17012851号

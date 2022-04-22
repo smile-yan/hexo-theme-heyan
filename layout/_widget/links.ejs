@@ -1,0 +1,12 @@
+<div class="card mb-3">
+    <h6 class="card-header"><i class="fa fa-link"></i> 友情链接</h6>
+    <div class="card-body tag-hover">
+        <ul class="list-group border-0">
+            <% theme.widgets_links.forEach(link=>{ %>
+                <a class="list-group-item border-0 pt-0 pb-0 ps-1 fs-6 text" href="<%- link.url %> ">
+                    <small><%- link.title %></small>
+                </a>
+            <% }) %> 
+        </ul>
+    </div>
+</div>

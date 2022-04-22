@@ -1,0 +1,29 @@
+<!-- 侧边栏 分类 -->
+<div class="card mb-3">
+    <h6 class="card-header tag-hover"><i class="fa fa-folder-open"></i> 分类
+        <% if (theme.widgets_default_show.category.length < site.categories.length) { %> 
+            <a class="float-end link-secondary text-decoration-none" data-bs-toggle="collapse" data-bs-target="#category"> 所有分类 <i class="fa fa-angle-right"></i></a>
+        <% } %>
+    </h6>
+    <div class="card-body">
+        <ul class="list-group border-0">
+            <% var categories = site.categories.sort(theme.widgets_default_show.category.sort_by,  
+                                                     theme.widgets_default_show.category.rule) %>
+            <% categories.each((category, i)=>{ %>
+            <% if (i >= theme.widgets_default_show.category.length) {return;} %> 
+            <a class="list-group-item border-0 pt-0 pb-0 ps-1" href="<%- url_for(category.path)  %> ">
+                <%- category.name %> <span class="badge bg-secondary float-end m-1"><%- category.length %></span>
+            </a>
+            <% }) %>  
+        </ul>
+
+        <ul class="list-group border-0 collapse" id="category">
+            <% for (var i=theme.widgets_default_show.category.length; i<categories.length; i++) { %>
+                    <a class="list-group-item border-0 pt-0 pb-0 ps-1" href="<%-url_for(categories.data[i].path)%>">
+                        <%- categories.data[i].name %>  <span class="badge bg-secondary float-end m-1"><%- categories.data[i].length %></span>
+                    </a>
+            <% } %>
+        </ul>
+    </div>
+</div>
+

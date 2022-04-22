@@ -1,0 +1,35 @@
+<h2><i class="p-1 fa fa-archive"></i>
+    <a href="<%-  url_for(config.archive_dir) %>" class="link-dark text-decoration-none">
+        归档
+    </a>
+    <% if (page.year) { %>
+        > <%- page.year  %> 
+    <% } %> 
+</h1> 
+<div class="tab-content pt-3">
+    <!-- 按照年份进行划分到map中再渲染 -->
+    <% var allposts =  page.posts.toArray().reduce(
+        (r, v, i, a, k = -v.date.format('YYYY')) => ((r[k] || (r[k] = [])).push(v), r), {}) %>
+    <% for (var year in allposts) { %>
+        <div class="pb-3">
+            <h3 class="tag-hover"> 
+                <a href="<%- url_for(config.archive_dir+'/'+ (-year)) %>" class="link-dark text-decoration-none">
+                     <%- -year %>
+                </a>
+            </h3>
+            <% allposts[year].forEach(post=>{ %>
+            <li class="ps-3 p-1 tag-hover">
+                <text class="text-secondary">
+                <%- date( post.date , 'YYYY/MM/DD HH:mm') %>
+                </text> 
+                <a href="<%- url_for(post.path) %> " class="link-dark text-decoration-none p-2">
+                    <%- post.title %>
+                </a>
+            </li>
+            <% }) %>
+        </div>
+    <% } %>
+</div>
+
+
+<%- partial('_partial/paginator')  %> 
