@@ -23,16 +23,14 @@ search:
   template: themes/heyan/search.xml
 ```
 
-Next, for a better performance, please modify the file `_config.yml` to use `highlight.js`.
+Next, for a better performance, please modify the file `_config.yml` to use `prism.js`.
 
 ```yaml
-highlight:
+prismjs:
   enable: true
+  preprocess: true
   line_number: true
-  auto_detect: false
   tab_replace: ''
-  wrap: true
-  hljs: true  # only to modify the last line
 ```
 
 ## preview
