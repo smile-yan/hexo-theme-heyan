@@ -4,7 +4,7 @@
         <ul class="list-group border-0">
             <% site.posts.forEach((post,i) =>{ %>
             <% if (i >= theme.widgets_default_show.recent.length) {return;} %>
-                <a class="list-group-item border-0 pt-0 pb-0 ps-1 fs-6 text">
+                <a class="list-group-item border-0 pt-0 pb-0 ps-1 fs-6" href="<%- url_for(post.path)  %> ">
                     <small> <%- post.title %> </small>
                 </a>
             <% }) %> 
