@@ -19,7 +19,9 @@ max_excerpt_words: 150
 
 
 menu_right:
-
+  - title: 关于
+    path: /about
+    icon_class: 'fa fa-user'
 
 
 # 侧边栏展示的内容以及顺序
@@ -62,8 +64,13 @@ mathjax: true
 
 # copyright
 copyright:  Copyright © 2022
-            <a class="link-secondary text-decoration-none" href="https://smileyan.cn">
+            <a class="link-secondary text-decoration-none" href="https://hexo.io">
                 笑颜网
+            </a><br>
+             <a class="link-secondary text-decoration-none" href="https://github.com/smile-yan/hexo-theme-heyan">
+                Hexo
+            </a> Theme <a class="link-secondary text-decoration-none" href="https://github.com/smile-yan/hexo-theme-heyan">
+                heyan
             </a>
 
 # 备案号
