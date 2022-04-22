@@ -1,0 +1,37 @@
+reading_label: 正在查看 %s 下的文章
+blog: 部落格
+albums: 相簿
+categories: 分類
+tags: 標籤
+archive: 歸檔
+links: 連結
+about: 關於
+recent: 最近文章
+next: 下一頁
+previous: 上一頁
+notitle: 無標題
+blogroll: 友站連結
+history: 歷史
+rss: 訂閱
+guestbook: 留言
+home: 首頁
+recent_comments: 最近評論
+Readmore: 閱讀全文
+belongsto: 分類於
+contents: 文章目錄
+shareto: 分享
+Discuss: 條參與
+Comment: 條評論
+Hits: 閱讀
+copyright_title_prefix: 本文標題：
+copyright_link_prefix: 原始連結：
+copyright_date_prefix: 發佈時間：
+copyright_update_prefix: 最後更新：
+copyright_author_prefix: 文章作者：
+copyright_declare_prefix: 版權聲明：
+copyright_default_text: 本部落格所有的原創文章，均採用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">CC BY 4.0</a> 許可協議。
+word_cnt: 字
+read_time: 分鐘
+copy_success_text: 複製成功！
+no_donate: 沒有開啟任何 Donate 選項！
+Copy_address_and_show_QRCode: 複製地址和顯示二維碼！
