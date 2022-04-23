@@ -19,9 +19,7 @@ max_excerpt_words: 150
 
 
 menu_right:
-  - title: 关于
-    path: /about
-    icon_class: 'fa fa-user'
+
 
 
 # 侧边栏展示的内容以及顺序
