@@ -2,6 +2,8 @@
 
 A simple hexo theme based on Bootstrap5.
 
+![](https://d33wubrfki0l68.cloudfront.net/39afd0a6a3a4908fbb70389353692a4d94569405/11e20/themes/screenshots/heyan@2x.jpg)
+
 ## Usage
 
 Clone this repository and install the following dependencies to maintain local search functionality.
@@ -38,5 +40,5 @@ prismjs:
 [smileyan.cn/heyan/](https://smileyan.cn/heyan/)
 
 
-> Smileyann
+> Smileyan
 > 2022.4.21 22:10
