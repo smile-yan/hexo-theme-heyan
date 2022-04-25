@@ -1,5 +1,3 @@
-console.log('welcome')
-
 // 根据 $$ 将原内容分块
 // 如果是奇数块则前后添加 $$ 符号
 function dollarsHandle(data) {
@@ -17,12 +15,11 @@ function dollarsHandle(data) {
          })
         return newContent
      }
-     return data
+     return data 
 }
 
-
+// 在渲染前进行
 hexo.extend.filter.register('before_post_render', data => {
-    
     // 首先根据 ``` 划分为代码块与非代码块
     var blocks = data.content.split('```')
     blocks.forEach((block, i) => {
