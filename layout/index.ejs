@@ -1,5 +1,4 @@
 <!-- 主页 -->
-
 <% 
     function generateExcerpt(post) {
         var paragraph = theme.post_excerpt_paragraph
@@ -14,24 +13,20 @@
         if (br<0) {
             return ""
         }
-
         if (post.content.substring(0, br).length > max_excerpt_words) {
             return post.content.substring(0, max_excerpt_words)
         }
-
         return post.content.substring(0, br)
     }
-
 %> 
 
 <% page.posts.each(post=> { %>
     <div class="pb-4 tag-hover">
-        <h2 class="tag-hover">
+        <p class="tag-hover h2">
             <a href="<%- url_for(post.path) %>" class="link-dark text-decoration-none">
                 <%- post.title  %> 
             </a>
-        </h2>
-
+        </p>
 
     <div class="pb-0">
         <i class="fa fa-calendar p-1"></i>
