@@ -15,17 +15,7 @@ $ npm install hexo-generator-search --save
 
 ## Configuration
 
-Add the following to the `_config.yml` of your hexo project, and please make sure that the path `template: themes/heyan/search.xml` is correct.
-
-```yaml
-search:
-  path: search.xml
-  field: post
-  content: true
-  template: themes/heyan/search.xml
-```
-
-Next, for a better performance, please modify the file `_config.yml` to use `prism.js`.
+For a better performance, please modify the file `_config.yml` to use `prism.js`.
 
 ```yaml
 prismjs:
