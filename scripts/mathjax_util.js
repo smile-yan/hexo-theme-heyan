@@ -28,12 +28,15 @@ hexo.extend.filter.register('before_post_render', data => {
             blocks[i] = dollarsHandle(block)
         }
     })
-
+    
+    // 除了最后一块，其他的都以 ``` 结尾
     if (blocks.length > 2) {
         var newDataContent = ""
         blocks.forEach((block, i)=>{
             newDataContent += block
-            newDataContent += "```"
+            if (i < blocks.length-1) {
+                newDataContent += "```"
+            }
         })
         data.content = newDataContent
     } else {
