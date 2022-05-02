@@ -9,11 +9,17 @@ A simple hexo theme based on Bootstrap5.
 Clone this repository and install the following dependencies to maintain local search functionality.
 
 ```bash
-$ git clone git@github.com:smile-yan/hexo-theme-heyan.git themes/heyan
+$ git clone https://github.com/smile-yan/hexo-theme-heyan.git themes/heyan
 $ npm install hexo-generator-search --save
 ```
 
 ## Configuration
+
+Change theme configuration of `_config.yml`:
+
+```bash
+theme: heyan
+```
 
 For a better performance, please modify the file `_config.yml` to use `prism.js`.
 
