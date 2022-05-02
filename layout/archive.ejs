@@ -1,11 +1,11 @@
-<h2><i class="p-1 fa fa-archive"></i>
+<p class="h2 border-bottom pb-2"><i class="p-1 fa fa-archive"></i>
     <a href="<%-  url_for(config.archive_dir) %>" class="link-dark text-decoration-none">
         归档
     </a>
     <% if (page.year) { %>
-        > <%- page.year  %> 
+        <i class="fa fa-long-arrow-right ps-1 pe-1"></i> <%- page.year  %> 
     <% } %> 
-</h1> 
+</p> 
 <div class="tab-content pt-3">
     <!-- 按照年份进行划分到map中再渲染 -->
     <% var allposts =  page.posts.toArray().reduce(
@@ -30,6 +30,5 @@
         </div>
     <% } %>
 </div>
-
 
 <%- partial('_partial/paginator')  %> 
