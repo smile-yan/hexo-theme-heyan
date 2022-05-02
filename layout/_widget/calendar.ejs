@@ -1,7 +1,7 @@
 <!-- 日历 -->
 <% var today = new Date() %>
 
-<% 
+<script>
 function paintCalendarMonthly(year, month) {
     // 每个月的第一天是星期几
     var start = new Date(year, month, 1)
@@ -22,7 +22,8 @@ function paintCalendarMonthly(year, month) {
 
     return result
 }
-%>
+</script>
+
 
 <div class="pb-3">
     <div class="card">
@@ -73,10 +74,34 @@ function paintCalendarMonthly(year, month) {
                     </div>
                     <div class="cal-days" id="calendar_detail">
                         <!--  填写日历表格 -->
-                        <%- paintCalendarMonthly(today.getFullYear(), today.getMonth()) %> 
+                         <!-- paintCalendarMonthly(today.getFullYear(), today.getMonth()) %>  -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+
+    function updateCalendar(year, month) {
+        var calendar = document.getElementById("calendar_detail")
+        var result = paintCalendarMonthly(year, month)
+        calendar.innerHTML = result
+    }
+
+
+    function selectChange(that) {
+        // console.log(that)
+        // 当前的年与月
+        var year = Number(document.getElementById("curr_year").innerHTML)
+        // 从0开始
+        var month = document.getElementById("curr_month").selectedIndex
+        updateCalendar(year, month)
+    }
+    window.onload = function () {
+        var today = new Date()
+        updateCalendar(today.getFullYear(), today.getMonth())
+    }
+</script>
