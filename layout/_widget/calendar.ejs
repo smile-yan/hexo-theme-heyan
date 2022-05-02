@@ -1,0 +1,82 @@
+<!-- 日历 -->
+<% var today = new Date() %>
+
+<% 
+function paintCalendarMonthly(year, month) {
+    // 每个月的第一天是星期几
+    var start = new Date(year, month, 1)
+    var week = start.getDay()
+    
+    // 绘制空白
+    var result = ''
+    for (var i=0; i<week; i++) {
+        result += ` <button class="btn cal-btn disabled border-0" type="button" ></button>`
+    }
+
+    // 绘制每一天
+    var total = new Date(year, month, 0).getDate()
+    for (var i=1; i<=total; i++) {
+        var id = year+"_"  + (month+1) + "_" + i
+        result += ` <a class="btn cal-btn text-secondary border-0" type="button" id = "`+id+`" href="#">`+i+`</a>`
+    }
+
+    return result
+}
+%>
+
+<div class="pb-3">
+    <div class="card">
+        <!-- <div class="p-2 mb-1 bg-light rounded border"> -->
+        <div class="card-body bg-light">
+            <div class="d-grid gap-1">
+                <div class="cal">
+                    <div style="text-align: center;">
+                        <a onclick="preYear()" class="muted-link float-start" href="#" style="padding-right: 5px;"> <i
+                                class="fa fa-angle-double-left"></i></a>
+
+                        <a onclick="preMonth()" class="muted-link float-start" href="#"> <i
+                                class="fa fa-angle-left"></i></a>
+
+                        <strong>
+                            <text id="curr_year">
+                                <%- today.getFullYear() %>
+                            </text>.
+                            <select id="curr_month" name="sellist1" onchange="selectChange(this)" class="border-0">
+                                <% for (var i=1; i<=12; i++) { %>
+                                    <% if (i == today.getMonth()+1) { %>
+                                        <option class="month_selection" selected>
+                                            <%- i %>
+                                        </option>
+                                    <% } else { %>
+                                            <option class="month_selection">
+                                                <%- i %>
+                                            </option>
+                                    <% } %>
+                                <% } %>
+                            </select>
+                        </strong>
+
+                        <a onclick="nextYear()" class="muted-link float-end" href="#"> <i
+                                class="fa fa-angle-double-right"></i></a>
+                        <a onclick="nextMonth()" id="next-year" class="muted-link float-end" href="#"
+                            style="padding-right: 5px;"> <i class="fa fa-angle-right"></i></a>
+
+                    </div>
+                    <div class="cal-weekdays text-body">
+                        <div class="cal-weekday">日</div>
+                        <div class="cal-weekday">一</div>
+                        <div class="cal-weekday">二</div>
+                        <div class="cal-weekday">三</div>
+                        <div class="cal-weekday">四</div>
+                        <div class="cal-weekday">五</div>
+                        <div class="cal-weekday">六</div>
+                    </div>
+                    <div class="cal-days" id="calendar_detail">
+                        <!--  填写日历表格 -->
+                        <%- paintCalendarMonthly(today.getFullYear(), today.getMonth()) %> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

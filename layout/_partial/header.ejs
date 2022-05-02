@@ -13,7 +13,6 @@
     <%- css('css/index')  %> 
     <%- js('js/search.js') %>
 
-
     <% if (theme.mathjax) { %> 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
         <script type="text/x-mathjax-config">
@@ -33,5 +32,6 @@
         }
         var path = "<%= config.root %>" + search_path;
         searchFunc(path, 'local-search-input', 'local-search-result');
+        // updateCalendar()
     </script>
 </head>

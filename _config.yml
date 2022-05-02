@@ -24,6 +24,7 @@ menu_right:
 
 # 侧边栏展示的内容以及顺序
 widgets:
+  - calendar
   - category
   - tag
   - recent
