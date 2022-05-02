@@ -1,5 +1,17 @@
 <!-- 日历 -->
 <% var today = new Date() %>
+<!-- 把所有的博客日期写到一个set里面 -->
+
+<% 
+    var all_days = new Map();
+
+    // console.log(site.posts.date)
+    site.posts.each(post=>{
+        var one_day = date(post.date, "YYYY_M_D")
+        all_days.set(one_day, url_for(post.path))        
+    })
+    // console.log(all_days)
+%> 
 
 <script>
 function paintCalendarMonthly(year, month) {
@@ -17,7 +29,11 @@ function paintCalendarMonthly(year, month) {
     var total = new Date(year, month, 0).getDate()
     for (var i=1; i<=total; i++) {
         var id = year+"_"  + (month+1) + "_" + i
-        result += ` <a class="btn cal-btn text-secondary border-0" type="button" id = "`+id+`" href="#">`+i+`</a>`
+        // if (days_map.has(id)) {
+            // result += ` <a class="btn cal-btn text-secondary border-0" type="button" id = "`+id+`" href="#">`+i+`</a>`
+        // } else {
+            result += ` <a class="btn cal-btn text-secondary border-0" type="button" id = "`+id+`" href="#">`+i+`</a>`
+        // }
     }
 
     return result
@@ -100,6 +116,7 @@ function paintCalendarMonthly(year, month) {
         var month = document.getElementById("curr_month").selectedIndex
         updateCalendar(year, month)
     }
+
     window.onload = function () {
         var today = new Date()
         updateCalendar(today.getFullYear(), today.getMonth())
