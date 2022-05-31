@@ -78,8 +78,8 @@
   tr
     &:nth-child(2n)
       background: #f6f4f4;
-    &:hover
-      background: #eee;
+    // &:hover
+    //   background: #eee;
 
 pre[class*=language-].line-numbers
   padding-top: 22px;
@@ -88,3 +88,11 @@ pre[class*=language-].line-numbers
 
 .markdown-section .code-toolbar
   margin-bottom: 20px;
+
+/*
+ * 对于 `某某关键字` 的样式
+ */
+.markdown-section p code
+  background: #eeeeee
+  padding: 6px;
+  border-radius: 20%;
