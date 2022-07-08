@@ -20,7 +20,8 @@ var searchFunc = function(path, search_id, content_id) {
             if ($("#local-search-input").length > 0) {
                 $input.addEventListener('input', function () {
                     var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                    var str = '<h3 class="tag-hover">搜索内容: '+ keywords +'<i class="fa fa-close ps-2 small" onclick="clearSearch()"></i></h3><ul class=\"list-group pb-3\">';
+                    // var str = '<h3 class="tag-hover">搜索内容: '+ keywords +'<i class="fa fa-close ps-2 small" onclick="clearSearch()"></i></h3><ul class=\"list-group pb-3\">';
+                    var str = '<ul class=\"list-group pb-3\">'
                     $resultContent.innerHTML = "";
                     if (this.value.trim().length <= 0) {
                         return;
@@ -102,7 +103,7 @@ var searchFunc = function(path, search_id, content_id) {
 }
 
 function clearSearch() {
-    $('#local-search-input').val("")
+    $('.local-search-input').val("")
     $('#local-search-result').empty()
 
 }   

@@ -7,19 +7,23 @@
     <%- partial('_partial/nav') %>
 
     <main class="container">
-        <div class="row pt-3">
+        <div class="row pt-1">
             <!-- 文章 -->
             <div class="col-md-8">
                 <div class="markdown-section">
-                    <!-- 搜索结果 -->
-                    <div id="local-search-result"></div>
                     <%- body %> 
                 </div>
             </div>
     
             <!-- sidebar -->
             <div class="col-md-4">
-                <%- partial('_partial/sidebar')  %> 
+                <div class="border-auto ps-3 pe-3 pb-3 pt-3">
+                    <div class="d-none d-md-block">
+                        <%- partial('_widget/search')  %> 
+                    </div>
+
+                    <%- partial('_partial/sidebar')  %> 
+                </div>
             </div>
         </div>
     </main>
