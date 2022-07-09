@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 pt-3 pb-3">
     <div class="container">
+        <!-- 标题 --> 
         <a class="navbar-brand" href="<%- url_for(config.index_generator.path) %> ">
             <%- config.title %>
         </a>
@@ -8,18 +9,11 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!-- 左边右边导航按钮 --> 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <%- partial('_partial/nav_menu', {place: 'left'})  %> 
             </ul>
-
-            <% if (theme.search.enable) { %> 
-            <form class="d-flex">
-                <button class="btn text-muted fa fa-search d-none d-md-block d-lg-block" disabled></button>
-                <input id="local-search-input" class="form-control me-2 pe-4" type="search"
-                        placeholder="<%- theme.search.placeholder%> " aria-label="Search">
-            </form>
-            <% } %>
 
             <ul class="navbar-nav">
                 <%- partial('_partial/nav_menu', {place: 'right'})  %> 

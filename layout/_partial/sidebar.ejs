@@ -1,5 +1,4 @@
-<div class="border-auto ps-3 pe-3 pb-3 pt-3">
-    <% theme.widgets.forEach(widget=>{ %>
-        <%- partial('_widget/'+widget) %> 
-    <% }) %>
-</div>
+<!-- 分别加载配置中提到的所有组件 -->
+<% theme.widgets.forEach(widget=>{ %>
+    <%- partial('_widget/'+widget) %> 
+<% }) %>
