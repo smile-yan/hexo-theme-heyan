@@ -6,15 +6,9 @@ menu_left:
   - title: 归档
     path: 'archives'
     icon_class: 'fa fa-archive"'
-  
-
-search: 
-  enable: false  # 是否使用搜索功能
-  placeholder: 搜索
 
 post_excerpt_paragraph: 1
 max_excerpt_words: 150
-
 
 menu_right:
   - title: 关于
@@ -23,6 +17,7 @@ menu_right:
 
 # 侧边栏展示的内容以及顺序
 widgets:
+  - search
   - category
   - tag
   - recent

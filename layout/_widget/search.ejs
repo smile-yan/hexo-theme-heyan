@@ -1,6 +1,11 @@
-<form class="d-flex pb-3">
-    <input id="local-search-input" class="form-control me-2 pe-4" type="search"
-            placeholder="<%- theme.search.placeholder%> " aria-label="Search">
-    <button class="btn text-muted fa fa-search d-none d-lg-block" disabled></button>
-</form>
-<div id="local-search-result"></div>
+<!-- 搜索功能，小窗口模式将自动隐藏 -->
+<div class="d-none d-md-block">
+    <form class="pb-3 input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text fa fa-search"></span>
+          </div>
+        <input id="local-search-input" class="form-control" type="search"
+                placeholder="搜索" aria-label="Search">
+    </form>
+    <div id="local-search-result"></div>
+</div>
