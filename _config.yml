@@ -8,7 +8,7 @@ menu_left:
     icon_class: 'fa fa-archive"'
 
 post_excerpt_paragraph: 1
-max_excerpt_words: 150
+max_excerpt_words: 500
 
 menu_right:
   - title: 关于
