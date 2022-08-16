@@ -24,7 +24,7 @@
     <!-- 标题 -->
     <div class="pb-4 tag-hover">
         <p class="tag-hover h3">
-            <a href="<%- url_for(post.path) %>" class="link-dark text-decoration-none">
+            <a href="<%- url_for(post.path) %>" class="link-dark text-decoration-none title">
                 <%- post.title  %> 
             </a>
         </p>
@@ -36,7 +36,7 @@
             <i class="fa fa-folder-open p-1"> </i> 
             <span class="tag-hover">
                 <% post.categories.each(category=>{ %>
-                    <a href="<%- url_for(category.path)  %> " class="link-dark text-decoration-none"> 
+                    <a href="<%- url_for(category.path)  %> " class="link-dark text-decoration-none title"> 
                         <%- category.name  %> 
                     </a>
                 <% }) %> 
@@ -45,7 +45,7 @@
             <i class="fa fa-tag p-1"> </i>
             <span class="tag-hover">
                 <% post.tags.each(tag=>{ %>
-                    <a href="<%- url_for(tag.path) %>" class="link-dark text-decoration-none"> 
+                    <a href="<%- url_for(tag.path) %>" class="link-dark text-decoration-none title"> 
                         <%- tag.name  %> 
                     </a>
                 <% }) %>
