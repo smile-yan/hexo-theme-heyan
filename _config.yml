@@ -18,6 +18,7 @@ menu_right:
 # 侧边栏展示的内容以及顺序
 widgets:
   - search
+  - toc
   - category
   - tag
   - recent

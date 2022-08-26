@@ -1,0 +1,9 @@
+<% if (is_post(page.content)) { %> 
+<div class="card mb-3">
+    <h6 class="card-header tag-hover"><i class="fa fa-file-text pe-2"></i>目录
+    </h6>
+    <div class="tag-hover">
+        <%- toc(page.content) %> 
+    </div>
+</div>
+<% } %> 
