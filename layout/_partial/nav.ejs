@@ -14,6 +14,18 @@
             <ul class="navbar-nav me-auto">
                 <%- partial('_partial/nav_menu', {place: 'left'})  %> 
             </ul>
+
+             <% if (theme.search.enable) { %> 
+            <form class="">
+                <div class="d-flex">
+                    <button class="btn text-muted fa fa-search d-none d-md-block d-lg-block" disabled></button>
+                    <input id="local-search-input" class="form-control me-2 pe-4" type="search"
+                            placeholder="<%- theme.search.placeholder%> " aria-label="Search">
+                </div>
+                <div id="local-search-result" style="position:absolute; padding-top: 8px; max-height: 960px; width: 480px;overflow-y: scroll; z-index: 1050;"></div>
+            </form>
+
+            <% } %>
             <ul class="navbar-nav">
                 <%- partial('_partial/nav_menu', {place: 'right'})  %> 
             </ul>
