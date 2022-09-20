@@ -1,0 +1,66 @@
+<!-- 主页 -->
+<% 
+    function generateExcerpt(post) {
+        var paragraph = theme.post_excerpt_paragraph
+        var max_excerpt_words = theme.max_excerpt_words
+        var br = 0
+        for (var i = 0; i < paragraph; i++) {
+            br = post.content.indexOf('\n',br+1)
+            if (br<0) {
+                break
+            } 
+        }
+        if (br<0) {
+            return ""
+        }
+        if (post.content.substring(0, br).length > max_excerpt_words) {
+            return post.content.substring(0, max_excerpt_words)
+        }
+        return post.content.substring(0, br)
+    }
+%> 
+
+<% page.posts.each(post=> { %>
+    <!-- 标题 -->
+    <div class="pb-4 tag-hover">
+        <p class="tag-hover h3">
+            <a href="<%- url_for(post.path) %>" class="link-dark text-decoration-none title">
+                <%- post.title  %> 
+            </a>
+        </p>
+
+        <div class="pb-0">
+            <i class="fa fa-calendar p-1"></i>
+            <%- date( post.date , 'YYYY/MM/DD HH:mm:ss') %> 
+
+            <i class="fa fa-folder-open p-1"> </i> 
+            <span class="tag-hover">
+                <% post.categories.each(category=>{ %>
+                    <a href="<%- url_for(category.path)  %> " class="link-dark text-decoration-none title"> 
+                        <%- category.name  %> 
+                    </a>
+                <% }) %> 
+            </span>
+
+            <i class="fa fa-tag p-1"> </i>
+            <span class="tag-hover">
+                <% post.tags.each(tag=>{ %>
+                    <a href="<%- url_for(tag.path) %>" class="link-dark text-decoration-none title"> 
+                        <%- tag.name  %> 
+                    </a>
+                <% }) %>
+            </span>
+        </div>
+
+        <div class="pt-3 pe-4 ">
+            <!-- 如果有摘要则显示摘要，没有就自己截取 -->
+            <% if (post.excerpt) { %>
+                <%- post.excerpt  %> 
+            <% } else { %>
+                <%- generateExcerpt(post)  %> 
+            <% } %> 
+        </div>
+    </div>
+<% }) %> 
+
+<%- partial('_partial/paginator') %> 

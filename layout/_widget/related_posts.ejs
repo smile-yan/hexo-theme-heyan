@@ -1,0 +1,13 @@
+<div class="card mb-3">
+    <h6 class="card-header"><i class="fa fa-clock-o pe-2"></i>相关文章</h6>
+    <div class="card-body tag-hover">
+        <ul class="list-group border-0">
+            <% site.posts.forEach((post,i) =>{ %>
+            <% if (i >= theme.widgets_default_show.recent.length) {return;} %>
+                <a class="list-group-item border-0 pt-0 pb-0 ps-1 fs-6" href="<%- url_for(post.path)  %> ">
+                    <small> <%- post.title %> </small>
+                </a>
+            <% }) %> 
+        </ul>
+    </div>
+</div>
