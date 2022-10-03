@@ -21,11 +21,12 @@ search:
   placeholder: 搜索
 
 # 侧边栏展示的内容以及顺序
-widgets:
+widgets_left:
   - category
+  - links
+widgets_right:
   - tag
   - recent
-  - links
 
 widgets_links:
   - title: csdn

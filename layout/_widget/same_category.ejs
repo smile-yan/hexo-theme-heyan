@@ -1,0 +1,25 @@
+<!-- 同一类型的文件 -->
+<!-- 尽可能做到每篇文章只有一个类
+    1. 获得 post 的类别 categories
+     2.1 如果 categories.length === 0，啥也不做
+     2.2 如果 categories === 1，渲染这个类的所有文章
+     2.3 如果 categories.length > 1 ，则以第一个类为准渲染所有文章
+-->
+
+<% if (page.categories.length > 0) { %> 
+    <div class="card mb-3">
+        <div class="card-header card-header-dark">
+            <i class="fa fa-bars pe-2"></i> <%- page.categories.data[0].name %>
+        </div>
+        <nav class="nav flex-column">
+            <% page.categories.data[0].posts.forEach(post=> {%> 
+                <!-- 只是添加具有相同层数的博客 -->
+                <% if (is_current(post.path)) {%>
+                    <a class="nav-link ps-3 border-bottom active-post" aria-current="page" href="<%- url_for(post.path) %>"><%- post.title %></a>
+                <% } else { %>
+                    <a class="nav-link ps-3 border-bottom" aria-current="page" href="<%- url_for(post.path) %>"><%- post.title %></a>
+                <% }%>
+            <% }) %>
+        </nav>
+    </div>
+<% } %>

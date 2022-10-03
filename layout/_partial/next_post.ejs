@@ -1,16 +1,21 @@
-<div class="p-2 pe-4 d-none d-md-block">
+<!-- 前一页后一页 -->
+<div class="previous-next-links">
     <% if (page.prev) { %> 
-        <a href="<%- url_for(page.prev.path)  %>" class="btn btn-outline-secondary btn-sm float-md-left float-sm-right">
-            <small>
-                < 上一篇：<%- page.prev.title  %>
-            </small>
+    <div class="previous-design-link">
+        <a href="<%- url_for(page.prev.path) %>">
+            <i style="font-size:16px;" class="fa fa-arrow-left" aria-hidden="true"></i>
+            <%- page.prev.title %>
         </a>
+    </div>
     <% } %> 
+
     <% if (page.next) { %> 
-        <a href="<%- url_for(page.next.path)%>" class="btn btn-outline-secondary btn-sm float-end" %>>
-            <small>
-                下一篇：<%- page.next.title  %> >
-            </small>
+    <div class="next-design-link">
+        <a href="<%- url_for(page.next.path) %>">
+            <%- page.next.title %>
+            <i style="font-size:16px;" class="fa fa-arrow-right" aria-hidden="true"></i>
         </a>
-    <% } %> 
-</div>
+    </div>
+<% } %> 
+</div> 
+            

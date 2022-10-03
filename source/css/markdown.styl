@@ -2,7 +2,7 @@
 .markdown-section a:not(.title)
   color: #121212;
   font-family: "Serif";
-  font-weight: 600;
+  font-weight: 420;
   padding-inline: 2px;
   text-decoration: none;
 
@@ -11,13 +11,15 @@
 .markdown-section h2
   padding: 8px 0px;
   border-bottom: 2px solid;
-  margin: 20px 0px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   font-size: 1.7rem;
   border-color: #eeeeee;
 
 .markdown-section h3
   padding: 8px 0px;
-  margin: 10px 0px;
+  margin-top: 6px;
+  margin-bottom: 3px;
   font-size: 1.4rem;
 
 .markdown-section h4,
@@ -102,6 +104,9 @@ pre[class*=language-].line-numbers
 .markdown-section .code-toolbar
   margin-bottom: 20px;
 
+.markdown-section p
+  margin-block-end: 0.5em;
+
 /*
  * 对于 `某某关键字` 的样式
  */
@@ -114,21 +119,50 @@ pre[class*=language-].line-numbers
  * 侧边栏的目录
  */
 .toc
-  padding-left: 16px;
+  padding-left: 12px;
   padding-top: 8px;
   padding-bottom: 5px;
 
 .toc-link
   text-decoration: none;
+  position: relative;
 
 .toc ol,
 .toc li
   list-style: none;
+.toc-child
+  padding-left: 1em;
 .toc-text
-  color: #333;
+  color: #666;
+  overflow: hidden;
 
 .toc-number
   display: none;
   
 .toc-text:hover
   color: #0a58ca;
+
+.previous-next-links
+  line-height: 24px;
+  overflow: hidden;
+  padding: 13px 10px 13px 10px;
+  background: #e1e1e1;
+  border-radius: 15px;
+  font-size: 15px;
+
+.previous-design-link
+  float: left;
+
+.next-design-link
+  float: right;
+
+.active-post
+  background: #ededed;
+
+ .card-header-dark
+  background: #c1c1c1;
+  font-weight: 600;
+  font-size: 1.1rem;
+
+.post-bg-light
+  background: #fdfdfd;

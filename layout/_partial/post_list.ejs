@@ -52,7 +52,7 @@
             </span>
         </div>
 
-        <div class="pt-3 pe-4 ">
+        <div class="pt-3 pe-1">
             <!-- 如果有摘要则显示摘要，没有就自己截取 -->
             <% if (post.excerpt) { %>
                 <%- post.excerpt  %> 
@@ -63,4 +63,3 @@
     </div>
 <% }) %> 
 
-<%- partial('_partial/paginator') %> 

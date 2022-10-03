@@ -1,16 +1,28 @@
 
 <div class="row pt-1">
+    <!-- sidebar -->
+    <div class="col-md-2 d-none d-sm-none d-md-block">
+        <div class="markdown-section">
+            <% theme.widgets_left.forEach(widget=>{ %>
+                <%- partial('_widget/'+widget) %> 
+            <% }) %>
+        </div>
+    </div>
     <!-- 文章 -->
     <div id="blog-content" class="col-md-8 col-sm-12">
         <div class="markdown-section">
-            <!-- <div id="local-search-result"></div> -->
-            <%- partial('_partial/post_list') %> 
+            <div class="">
+                <%- partial('_partial/post_list') %>
+            </div>
+            <%- partial('_partial/paginator') %> 
         </div>
     </div>
     <!-- sidebar -->
-    <div class="col-md-4" id='blog-siderbar'>
-        <div class="border-auto ps-3 pb-3">
-            <%- partial('_partial/sidebar')  %> 
+    <div class="col-md-2  d-none d-sm-none d-md-block" id='blog-siderbar'>
+        <div class="markdown-section">
+            <% theme.widgets_right.forEach(widget=>{ %>
+                <%- partial('_widget/'+widget) %> 
+            <% }) %>
         </div>
     </div>
 </div>
