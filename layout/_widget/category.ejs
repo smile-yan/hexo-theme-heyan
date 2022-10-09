@@ -5,6 +5,7 @@
     </div>
     <nav class="nav flex-column">
         <% var categories = site.categories.sort(theme.widgets_default_show.category.sort_by,  
+                                                 theme.widgets_default_show.category.rule) %>
         <% categories.each((category, i)=>{ %>
             <% if (is_current(category.path)) {%>
                 <a class="nav-link ps-3 border-bottom active-post" aria-current="page" href="<%- url_for(category.path) %>">
@@ -20,4 +21,3 @@
         <% }) %>
     </nav>
 </div>
-
