@@ -106,7 +106,6 @@ var searchFunc = function(path, search_id, content_id) {
     });
 }
 
-function clearSearch() {
-    $('#local-search-input').val("")
-    $('#local-search-result').empty()
+function hiddenSearch() {
+    // $('#local-search-input').val("")
 }   

@@ -4,8 +4,8 @@
     <div class="col-md-2 d-none d-sm-none d-md-block">
      
     </div>
-    <div class="col-md-8">
-        <p class="h2 border-bottom pb-2"><i class="p-1 fa fa-archive"></i>
+    <div class="col-md-8 markdown-section">
+        <p class="h2 border-bottom"><i class="p-1 fa fa-archive"></i>
             <a href="<%-  url_for(config.archive_dir) %>" class="link-dark text-decoration-none">
                 归档
             </a>
@@ -13,7 +13,7 @@
                 <i class="fa fa-long-arrow-right ps-1 pe-1"></i> <%- page.year  %> 
             <% } %> 
         </p> 
-        <div class="tab-content pt-3">
+        <div class="tab-content">
             <!-- 按照年份进行划分到map中再渲染 -->
             <% var allposts =  page.posts.toArray().reduce(
                 (r, v, i, a, k = -v.date.format('YYYY')) => ((r[k] || (r[k] = [])).push(v), r), {}) %>

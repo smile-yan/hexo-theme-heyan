@@ -1,11 +1,12 @@
 <!--  页码 -->
-<nav class="pt-4 mt-4">
+<nav class="pt-1 mt-1">
     <ul class="pagination justify-content-center new-pagination">
         <%- paginator(
             {
                 prev_text: '<i class="fa fa-angle-double-left"></i>',
                 next_text: '<i class="fa fa-angle-double-right"></i>',
-                escape: false
+                escape: false,
+                mid_size: 6
             }
         ) %>
     </ul>
