@@ -60,16 +60,5 @@ widgets_default_show:
 fancybox: true
 mathjax: true
 
-# copyright
-copyright:  Copyright © 2022
-            <a class="link-secondary text-decoration-none" href="https://hexo.io">
-                笑颜网
-            </a><br>
-             <a class="link-secondary text-decoration-none" href="https://github.com/smile-yan/hexo-theme-heyan">
-                Hexo
-            </a> Theme <a class="link-secondary text-decoration-none" href="https://github.com/smile-yan/hexo-theme-heyan">
-                heyan
-            </a>
-
 # 备案号
 beian: 湘ICP备 17012851号
