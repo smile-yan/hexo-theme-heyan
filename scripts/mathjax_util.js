@@ -5,7 +5,7 @@ function dollarsHandle(data) {
      var newContent = ""
      if (math_blocks.length > 2) {
          math_blocks.forEach((one, i)=>{
-            if (i % 2 == 1 ) {
+            if (i % 2 === 1 ) {
                 newContent += '<p>$$'
                 newContent += one
                 newContent += '$$</p>'
@@ -24,7 +24,7 @@ hexo.extend.filter.register('before_post_render', data => {
     var blocks = data.content.split('```')
     blocks.forEach((block, i) => {
         // 如果是偶数块
-        if (i % 2 == 0) {
+        if (i % 2 === 0) {
             blocks[i] = dollarsHandle(block)
         }
     })
