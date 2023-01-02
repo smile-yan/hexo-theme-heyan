@@ -1,10 +1,10 @@
-
-
+<!-- 归档页面 -->
 <div class="row pt-1">
-    <div class="col-md-2 d-none d-sm-none d-md-block">
-     
+    <div class="col-md-2 d-none d-sm-none d-md-block markdown-section">
+        <%- partial("_widget/category")  %>
     </div>
     <div class="col-md-8 markdown-section">
+
         <p class="h2 border-bottom"><i class="p-1 fa fa-archive"></i>
             <a href="<%-  url_for(config.archive_dir) %>" class="link-dark text-decoration-none">
                 归档
@@ -40,7 +40,7 @@
         
         <%- partial('_partial/paginator')  %> 
     </div>
-    <div class="col-md-2 d-none d-sm-none d-md-block">
-     
+    <div class="col-md-2 d-none d-sm-none d-md-block markdown-section">
+        <%- partial("_widget/tag")  %>
     </div>
 </div>
