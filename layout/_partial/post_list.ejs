@@ -20,7 +20,7 @@
     }
 %> 
 
-<% page.posts.each(post=> { %>
+<% page.posts.sort("updated", "desc").each(post=> { %>
     <!-- 标题 -->
     <div class="pb-4 tag-hover">
         <p class="tag-hover h3">
