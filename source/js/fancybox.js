@@ -16,4 +16,10 @@ $(document).ready(function() {
       title: { type: 'inside'}
       }
     });
+
+    // toc
+    // $(".toc-link").click(function(){
+      // console.log("dd")
+    // });
+
 });

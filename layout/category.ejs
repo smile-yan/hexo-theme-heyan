@@ -2,11 +2,7 @@
 <div class="row pt-1">
     <!-- sidebar -->
     <div class="col-md-2 d-none d-sm-none d-md-block">
-        <div class="markdown-section">
-            <% theme.widgets_left.forEach(widget=>{ %>
-                <%- partial('_widget/'+widget) %> 
-            <% }) %>
-        </div>
+
     </div>
     <!-- 文章 -->
     <div id="blog-content" class="col-md-8 col-sm-12">
@@ -22,10 +18,6 @@
     </div>
     <!-- sidebar -->
     <div class="col-md-2  d-none d-sm-none d-md-block" id='blog-siderbar'>
-        <div class="markdown-section">
-            <% theme.widgets_right.forEach(widget=>{ %>
-                <%- partial('_widget/'+widget) %> 
-            <% }) %>
-        </div>
+
     </div>
 </div>
