@@ -32,24 +32,28 @@
         <div class="pb-0">
             <i class="fa fa-calendar p-1"></i>
             <%- date( post.date , 'YYYY/MM/DD HH:mm:ss') %> 
+            <% if (post.categories.length > 0) {%>
+                <i class="fa fa-folder-open p-1"> </i> 
+                <span class="tag-hover">
+                    <% post.categories.each(category=>{ %>
+                        <a href="<%- url_for(category.path)  %> " class="link-dark text-decoration-none title"> 
+                            <%- category.name  %> 
+                        </a>
+                    <% }) %> 
+                </span>
+            <% } %>
+            
+            <% if (post.categories.length > 0) {%>
+                <i class="fa fa-tag p-1"> </i>
+                <span class="tag-hover">
+                    <% post.tags.each(tag=>{ %>
+                        <a href="<%- url_for(tag.path) %>" class="link-dark text-decoration-none title"> 
+                            <%- tag.name  %> 
+                        </a>
+                    <% }) %>
+                </span>
+            <% } %>
 
-            <i class="fa fa-folder-open p-1"> </i> 
-            <span class="tag-hover">
-                <% post.categories.each(category=>{ %>
-                    <a href="<%- url_for(category.path)  %> " class="link-dark text-decoration-none title"> 
-                        <%- category.name  %> 
-                    </a>
-                <% }) %> 
-            </span>
-
-            <i class="fa fa-tag p-1"> </i>
-            <span class="tag-hover">
-                <% post.tags.each(tag=>{ %>
-                    <a href="<%- url_for(tag.path) %>" class="link-dark text-decoration-none title"> 
-                        <%- tag.name  %> 
-                    </a>
-                <% }) %>
-            </span>
         </div>
 
         <div class="pt-3 pe-1">

@@ -1,23 +1,25 @@
 <!-- 侧边栏 分类 -->
-<div class="card mb-3">
-    <div class="card-header card-header-dark">
-        <i class="fa fa-folder-open pe-2"></i> 分类
+<% if (site.categories.length > 0) { %>
+    <div class="card mb-3">
+        <div class="card-header card-header-dark">
+            <i class="fa fa-folder-open pe-2"></i> 分类
+        </div>
+        <nav class="nav flex-column">
+            <% var categories = site.categories.sort(theme.widgets_default_show.category.sort_by,  
+                                                    theme.widgets_default_show.category.rule) %>
+            <% categories.each((category, i)=>{ %>
+                <% if (is_current(category.path)) {%>
+                    <a class="nav-link ps-3 border-bottom active-post" aria-current="page" href="<%- url_for(category.path) %>">
+                        <%- category.name %>
+                        <span class="badge bg-secondary float-end me-2"><%- categories.data[i].length %></span>
+                    </a>
+                <% } else { %>
+                    <a class="nav-link ps-3 border-bottom" aria-current="page" href="<%- url_for(category.path) %>">
+                        <%- category.name %>
+                        <span class="badge bg-secondary float-end me-2"><%- categories.data[i].length %></span>
+                    </a>
+                <% } %>
+            <% }) %>
+        </nav>
     </div>
-    <nav class="nav flex-column">
-        <% var categories = site.categories.sort(theme.widgets_default_show.category.sort_by,  
-                                                 theme.widgets_default_show.category.rule) %>
-        <% categories.each((category, i)=>{ %>
-            <% if (is_current(category.path)) {%>
-                <a class="nav-link ps-3 border-bottom active-post" aria-current="page" href="<%- url_for(category.path) %>">
-                    <%- category.name %>
-                    <span class="badge bg-secondary float-end me-2"><%- categories.data[i].length %></span>
-                </a>
-            <% } else { %>
-                <a class="nav-link ps-3 border-bottom" aria-current="page" href="<%- url_for(category.path) %>">
-                    <%- category.name %>
-                    <span class="badge bg-secondary float-end me-2"><%- categories.data[i].length %></span>
-                </a>
-            <% } %>
-        <% }) %>
-    </nav>
-</div>
+<% } %>
