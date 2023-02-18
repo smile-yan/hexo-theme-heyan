@@ -4,11 +4,11 @@
         <div class="card-header card-header-dark">
             <i class="fa fa-tag pe-2"></i> 标签
         </div>
-        <nav class="nav flex-column">
+        <div class="p-2">
             <% var tags = site.tags.sort(theme.widgets_default_show.tag.sort_by,  
                                          theme.widgets_default_show.tag.rule) %>
             <% tags.each((tag, i)=>{ %>
-                <% if (is_current(tag.path)) {%>
+                <!-- <% if (is_current(tag.path)) {%>
                     <a class="nav-link ps-3 border-bottom active-post" aria-current="page" href="<%- url_for(tag.path) %>">
                         <%- tag.name %>
                         <span class="badge bg-secondary float-end me-2"><%- tags.data[i].length %></span>
@@ -18,8 +18,9 @@
                         <%- tag.name %>
                         <span class="badge bg-secondary float-end me-2"><%- tags.data[i].length %></span>
                     </a>
-                <% } %>
+                <% } %> -->
+                <a class="" href="<%- url_for(tag.path) %>"><%- tag.name %></a>
             <% }) %>
-        </nav>
+        </div>
     </div>
 <% } %>
