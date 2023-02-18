@@ -6,7 +6,7 @@
         </div>
         <nav class="nav flex-column">
             <% var tags = site.tags.sort(theme.widgets_default_show.tag.sort_by,  
-                                        theme.widgets_default_show.tag.rule) %>
+                                         theme.widgets_default_show.tag.rule) %>
             <% tags.each((tag, i)=>{ %>
                 <% if (is_current(tag.path)) {%>
                     <a class="nav-link ps-3 border-bottom active-post" aria-current="page" href="<%- url_for(tag.path) %>">
