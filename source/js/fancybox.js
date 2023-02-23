@@ -9,8 +9,6 @@ $(document).ready(function() {
     $(this).find('.fancybox').each(function(){
       $(this).attr('rel', 'article')
     })
-})
-  $(document).ready(function() {
     $("a[href$='.jpg'],a[href$='.png'],a[href$='.gif'],a[href$='.webp']").attr('rel', 'gallery').fancybox({
       helpers : {
       title: { type: 'inside'}
@@ -19,10 +17,8 @@ $(document).ready(function() {
     
     // 如果页面的高度小于屏幕的高度，为了避免底部导航栏 "居中"
     if (document.body.scrollHeight < window.screen.availHeight) {
-      console.log("ss")
       $("#flex_bottom").addClass("fixed-bottom");
     } else {
-      console.log("dd")
       $("#flex_bottom").removeClass("fixed-bottom");
     }
 });
