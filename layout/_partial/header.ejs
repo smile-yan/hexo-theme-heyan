@@ -7,12 +7,10 @@
     <link rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-    <%- css('css/prism')  %> 
+    <%- css('css/prism.css') %> 
     <%- js('js/prism.js') %>
-    
     <%- css('css/index')  %> 
-    <%- js('js/search.js') %>
-
+    <%- js('js/search') %>
 
     <% if (theme.mathjax) { %> 
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -31,15 +29,16 @@
 
     <% if (theme.fancybox) { %> 
         <script src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js"> </script>
-        <%- js('js/fancybox.js') %>
+        <%- js('js/fancybox') %>
     <% } %>
 
     <script type="text/javascript">
-        var search_path = "<%= config.search.path %>";
+
+        var search_path = "<%= config.root %>search.xml";
         if (search_path.length == 0) {
             search_path = "search.xml";
         }
-        var path = "<%= config.root %>" + search_path;
+        var path = search_path;
         searchFunc(path, 'local-search-input', 'local-search-result');
     </script>
 </head>
