@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
 <%- partial('_partial/header') %> 
- 
 <body>
     <!-- 导航栏 -->
     <%- partial('_partial/nav') %>
@@ -13,5 +12,25 @@
 
     <!-- 底部栏 -->
     <%- partial('_partial/footer')  %>
-</body> 
+</body>
+
+<script>
+    // 检查页面内容高度是否小于窗口高度
+    function checkContentHeight() {
+        const contentHeight = document.body.scrollHeight;
+        const windowHeight = window.innerHeight;
+
+        if (contentHeight < windowHeight) {
+            // 内容高度不足以填充整个窗口，固定底部导航栏
+            document.getElementById('flex_bottom').classList.add('fixed-bottom');
+        } else {
+            // 内容高度足够多，不固定底部导航栏
+            document.getElementById('flex_bottom').classList.remove('fixed-bottom');
+        }
+    }
+
+    // 页面加载时和窗口大小变化时检查内容高度
+    window.addEventListener('load', checkContentHeight);
+    window.addEventListener('resize', checkContentHeight);
+</script>
 </html>
