@@ -1,11 +1,6 @@
 <!-- 某标签对应的所有post -->
 <div class="row pt-1">
-    <!-- sidebar -->
-    <div class="col-md-2 d-none d-sm-none d-md-block">
-        <div class="markdown-section">
-          
-        </div>
-    </div>
+    
     <!-- 文章 -->
     <div id="blog-content" class="col-md-8 col-sm-12">
         <p class="h3 border-bottom pb-2"><i class="p-1 fa fa-tag"></i>
@@ -18,10 +13,14 @@
             <%- partial('_partial/paginator') %> 
         </div>
     </div>
-    <!-- sidebar -->
-    <div class="col-md-2  d-none d-sm-none d-md-block" id='blog-siderbar'>
-        <div class="markdown-section">
-           
+    
+    <!-- 侧边栏 -->
+    <div class="col-md-4 d-none d-md-block ps-0 " id='blog-siderbar'>
+        <div class="markdown-section ps-3 pb-3 pt-3 border-start">
+            <%- partial("_widget/category") %> 
+            <%- partial("_widget/tag")  %> 
+            <%- partial("_widget/recent")  %> 
+            <%- partial("_widget/links")  %> 
         </div>
-    </div>
+    </div>  
 </div>

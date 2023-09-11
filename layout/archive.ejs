@@ -1,8 +1,6 @@
 <!-- 归档页面 -->
 <div class="row pt-1">
-    <div class="col-md-2 d-none d-sm-none d-md-block markdown-section">
-        <%- partial("_widget/category")  %>
-    </div>
+
     <div class="col-md-8 markdown-section">
 
         <p class="h2 border-bottom"><i class="p-1 fa fa-archive"></i>
@@ -40,7 +38,14 @@
         
         <%- partial('_partial/paginator')  %> 
     </div>
-    <div class="col-md-2 d-none d-sm-none d-md-block markdown-section">
-        <%- partial("_widget/tag")  %>
+
+    <!-- 侧边栏 -->
+    <div class="col-md-4 d-none d-md-block ps-0 " id='blog-siderbar'>
+        <div class="markdown-section ps-3 pb-3 pt-3 border-start">
+            <%- partial("_widget/category") %> 
+            <%- partial("_widget/tag")  %> 
+            <%- partial("_widget/recent")  %> 
+            <%- partial("_widget/links")  %> 
+        </div>
     </div>
 </div>
