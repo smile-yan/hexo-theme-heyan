@@ -1,6 +1,6 @@
 <% if (is_post(page.content)) { %> 
     <% if (toc(page.content) != "") { %>
-        <div>
+        <div class="toc">
             <%- toc(page.content, {"max_depth": 3}) %> 
         </div>
     <% } %>
