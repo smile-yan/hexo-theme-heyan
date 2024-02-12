@@ -17,11 +17,21 @@ $ npm install hexo-generator-search --save
 
 Change theme configuration of `_config.yml`:
 
-```bash
-theme: heyan
+```diff
+- theme: landscape
++ theme: heyan
 ```
 
 For a better performance, please modify the file `_config.yml` to use `prism.js`.
+
+For new version of hexo.js:
+
+```diff
+- syntax_highlighter: highlight.js
++ syntax_highlighter: prismjs
+```
+
+For old version of hexo.js
 
 ```yaml
 prismjs:
