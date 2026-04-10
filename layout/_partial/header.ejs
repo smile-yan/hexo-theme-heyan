@@ -8,9 +8,15 @@
     <link rel="manifest" href="/favicon/site.webmanifest">
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <% if (theme.fancybox) { %>
+    <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+    <% } %>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <% if (theme.fancybox) { %>
+    <script src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <%- js('js/fancybox') %>
+    <% } %>
     <%- css('css/prism.css') %> 
     <%- css('css/markdown.css') %> 
     <%- js('js/prism.js') %>
@@ -21,7 +27,7 @@
 
     <% if (theme.mathjax) { %> 
        
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script id="MathJax-script" async src="https://cdn.bootcdn.net/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
         <script>
         MathJax = {
             tex: {
