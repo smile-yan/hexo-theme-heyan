@@ -11,12 +11,13 @@
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/core-js/3.38.1/min/polyfill.min.js"></script>         
     <%- css('css/prism.css') %> 
     <%- css('css/markdown.css') %> 
     <%- js('js/prism.js') %>
-    <%- css('css/index')  %> 
+    <%- css('css/index')  %>
+    <% if (theme.search && theme.search.enable) { %>
     <%- js('js/search') %>
+    <% } %>
 
     <% if (theme.mathjax) { %> 
        
@@ -34,12 +35,13 @@
     <% } %> 
 
     <script type="text/javascript">
-
+        <% if (theme.search && theme.search.enable) { %>
         var search_path = "<%= config.root %>search.xml";
         if (search_path.length == 0) {
             search_path = "search.xml";
         }
         var path = search_path;
         searchFunc(path, 'local-search-input', 'local-search-result');
+        <% } %>
     </script>
 </head>

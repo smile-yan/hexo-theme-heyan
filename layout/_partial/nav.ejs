@@ -16,7 +16,7 @@
                 <%- partial('_partial/nav_menu', {place: 'left'})  %> 
             </ul>
 
-            <% if (theme.search.enable) { %>
+            <% if (theme.search && theme.search.enable) { %>
             <form class="">
                 <div class="d-flex">
                     <button class="btn text-muted fa fa-search d-none d-md-block d-lg-block" disabled></button>

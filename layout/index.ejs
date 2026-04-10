@@ -4,16 +4,19 @@
     <div id="blog-content" class="col-md-8 col-sm-12" >
         <div class="markdown-section pt-3">
             <%- partial('_partial/post_list') %>
-            <%- partial('_partial/paginator') %> 
+            <%- partial('_partial/paginator') %>
         </div>
     </div>
     <!-- 侧边栏 -->
     <div class="col-md-4 d-none d-md-block ps-0 " id='blog-siderbar'>
         <div class="markdown-section ps-3 pb-3 pt-3 border-start">
-            <%- partial("_widget/category") %> 
-            <%- partial("_widget/tag")  %> 
-            <%- partial("_widget/recent")  %> 
-            <%- partial("_widget/links")  %> 
+            <%- partial("_widget/category") %>
+            <%- partial("_widget/tag")  %>
+            <% if (theme.calendar && theme.calendar.enable) { %>
+            <%- partial("_widget/calendar") %>
+            <% } %>
+            <%- partial("_widget/recent")  %>
+            <%- partial("_widget/links")  %>
         </div>
     </div>
 </div>

@@ -17,7 +17,7 @@ menu_right:
 
 
 search: 
-  enable: true  # 是否使用搜索功能
+  enable: false  # 是否使用搜索功能
   placeholder: 搜索
 
 # 侧边栏展示的内容以及顺序
@@ -25,8 +25,13 @@ widgets_left:
   - category
 widgets_right:
   - tag
+  - calendar
   - recent
   - links
+
+# 是否显示日历
+calendar:
+  enable: true
 
 
 widgets_links:

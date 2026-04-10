@@ -1,0 +1,315 @@
+<% if (!theme.calendar || !theme.calendar.enable) { return; } %>
+
+<%
+// 获取所有有文章的日期
+var postDates = {};
+site.posts.forEach(function(post) {
+    var dateStr = post.date.format('YYYY-MM-DD');
+    if (!postDates[dateStr]) {
+        postDates[dateStr] = [];
+    }
+    postDates[dateStr].push({
+        title: post.title,
+        path: post.path
+    });
+});
+
+// 当前显示的月份（从 URL 参数或 hash 读取，默认当前月）
+var now = new Date();
+var displayYear = now.getFullYear();
+var displayMonth = now.getMonth();
+var currentDay = now.getDate();
+var isCurrentMonth = (displayYear === now.getFullYear() && displayMonth === now.getMonth());
+
+// 周转数组
+var weekDays = ['日', '一', '二', '三', '四', '五', '六'];
+%>
+
+<div class="card mb-3">
+    <div class="card-header card-header-dark d-flex justify-content-between align-items-center">
+        <a href="javascript:void(0)" onclick="renderCalendar('<%- config.root %>', -1)" class="text-decoration-none" title="上个月">
+            <i class="fa fa-chevron-left"></i>
+        </a>
+        <span id="calendarTitle">
+            <i class="fa fa-calendar pe-2"></i><%- displayYear %>年<%- displayMonth + 1 %>月
+        </span>
+        <a href="javascript:void(0)" onclick="renderCalendar('<%- config.root %>', 1)" class="text-decoration-none" title="下个月">
+            <i class="fa fa-chevron-right"></i>
+        </a>
+    </div>
+    <div class="p-2">
+        <div class="calendar-grid" id="calendarGrid">
+            <!-- 星期标题 -->
+            <% weekDays.forEach(function(day) { %>
+                <div class="calendar-header"><small class="text-secondary"><%- day %></small></div>
+            <% }); %>
+
+            <!-- 空白格子 -->
+            <% var firstDay = new Date(displayYear, displayMonth, 1).getDay(); %>
+            <% for (var i = 0; i < firstDay; i++) { %>
+                <div class="calendar-cell"></div>
+            <% } %>
+
+            <!-- 日期格子 -->
+            <% var daysInMonth = new Date(displayYear, displayMonth + 1, 0).getDate(); %>
+            <% for (var day = 1; day <= daysInMonth; day++) {
+                var dateStr = displayYear + '-' + (displayMonth + 1).toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0');
+                var hasPost = postDates[dateStr] ? true : false;
+                var isToday = isCurrentMonth && (day === currentDay) ? 'calendar-today' : '';
+            %>
+                <div class="calendar-cell">
+                    <% if (hasPost) { %>
+                    <a href="javascript:void(0)"
+                       class="calendar-day <%- isToday %> calendar-has-post"
+                       data-date="<%- dateStr %>"
+                       onclick="showCalendarPosts('<%- dateStr %>')"
+                       title="<%- postDates[dateStr].length + '篇文章' %>">
+                        <%- day %>
+                    </a>
+                    <% } else { %>
+                    <span class="calendar-day calendar-disabled" title="无文章">
+                        <%- day %>
+                    </span>
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<!-- 文章列表弹窗 -->
+<div class="modal fade" id="calendarPostsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="calendarPostsModalTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div id="calendarPostsModalBody" class="list-group list-group-flush"></div>
+            </div>
+            <div class="modal-footer bg-light justify-content-between">
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="calendarPrevBtn" onclick="changePage(-1)">
+                    <i class="fa fa-chevron-left"></i> 上一页
+                </button>
+                <span class="text-muted align-self-center" id="calendarPageInfo"></span>
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="calendarNextBtn" onclick="changePage(1)">
+                    下一页 <i class="fa fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+var calendarPostsData = <%- JSON.stringify(postDates) %>;
+var currentDisplayYear = <%- displayYear %>;
+var currentDisplayMonth = <%- displayMonth %>;
+var currentPostsPage = 1;
+var currentPosts = [];
+var postsPerPage = 10;
+
+// 页面加载时清理可能残留的 modal backdrop
+document.addEventListener('DOMContentLoaded', function() {
+    // 检查页面是否有日历元素，没有则跳过
+    if (!document.getElementById('calendarGrid')) return;
+
+    document.querySelectorAll('.modal-backdrop').forEach(function(el) { el.remove(); });
+    document.body.classList.remove('modal-open');
+});
+
+function renderCalendar(base, offset) {
+    var titleEl = document.getElementById('calendarTitle');
+    var grid = document.getElementById('calendarGrid');
+    if (!titleEl || !grid) return; // 详情页没有日历元素，直接返回
+
+    // 计算新月份
+    currentDisplayMonth += offset;
+    if (currentDisplayMonth > 11) {
+        currentDisplayMonth = 0;
+        currentDisplayYear++;
+    } else if (currentDisplayMonth < 0) {
+        currentDisplayMonth = 11;
+        currentDisplayYear--;
+    }
+
+    var now = new Date();
+    var todayYear = now.getFullYear();
+    var todayMonth = now.getMonth();
+    var todayDay = now.getDate();
+    var isCurrentMonth = (currentDisplayYear === todayYear && currentDisplayMonth === todayMonth);
+
+    var weekDays = ['日', '一', '二', '三', '四', '五', '六'];
+    var firstDay = new Date(currentDisplayYear, currentDisplayMonth, 1).getDay();
+    var daysInMonth = new Date(currentDisplayYear, currentDisplayMonth + 1, 0).getDate();
+
+    // 更新标题
+    var titleEl = document.getElementById('calendarTitle');
+    titleEl.innerHTML = '<i class="fa fa-calendar pe-2"></i>' + currentDisplayYear + '年' + (currentDisplayMonth + 1) + '月';
+
+    // 生成日历
+    var grid = document.getElementById('calendarGrid');
+    var html = '';
+
+    // 星期标题
+    weekDays.forEach(function(day) {
+        html += '<div class="calendar-header"><small class="text-secondary">' + day + '</small></div>';
+    });
+
+    // 空白格子
+    for (var i = 0; i < firstDay; i++) {
+        html += '<div class="calendar-cell"></div>';
+    }
+
+    // 日期格子
+    for (var day = 1; day <= daysInMonth; day++) {
+        var dateStr = currentDisplayYear + '-' + (currentDisplayMonth + 1).toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0');
+        var hasPost = calendarPostsData[dateStr] ? true : false;
+        var isToday = isCurrentMonth && (day === todayDay) ? 'calendar-today' : '';
+        var postCount = hasPost ? calendarPostsData[dateStr].length : 0;
+
+        html += '<div class="calendar-cell">';
+        if (hasPost) {
+            html += '<a href="javascript:void(0)" class="calendar-day ' + isToday + ' calendar-has-post" ';
+            html += 'data-date="' + dateStr + '" ';
+            html += 'onclick="showCalendarPosts(\'' + dateStr + '\')" title="' + postCount + '篇文章">' + day + '</a>';
+        } else {
+            html += '<span class="calendar-day calendar-disabled" title="无文章">' + day + '</span>';
+        }
+        html += '</div>';
+    }
+
+    grid.innerHTML = html;
+}
+
+function showCalendarPosts(dateStr) {
+    var posts = calendarPostsData[dateStr];
+    currentPosts = posts || [];
+    currentPostsPage = 1;
+
+    var titleEl = document.getElementById('calendarPostsModalTitle');
+    var bodyEl = document.getElementById('calendarPostsModalBody');
+
+    if (!posts || posts.length === 0) {
+        titleEl.textContent = dateStr + ' - 无文章';
+        bodyEl.innerHTML = '<p class="text-muted p-3">这一天没有发布文章</p>';
+        document.getElementById('calendarPageInfo').textContent = '';
+        document.getElementById('calendarPrevBtn').style.display = 'none';
+        document.getElementById('calendarNextBtn').style.display = 'none';
+    } else {
+        renderPostsPage(dateStr);
+    }
+
+    // 监听 modal 关闭，手动清除 backdrop
+    var modalEl = document.getElementById('calendarPostsModal');
+    var handleHidden = function() {
+        document.querySelectorAll('.modal-backdrop').forEach(function(backdrop) {
+            backdrop.remove();
+        });
+        document.body.classList.remove('modal-open');
+        modalEl.removeEventListener('hidden.bs.modal', handleHidden);
+    };
+    modalEl.addEventListener('hidden.bs.modal', handleHidden);
+
+    var modal = new bootstrap.Modal(document.getElementById('calendarPostsModal'));
+    modal.show();
+}
+
+function renderPostsPage(dateStr) {
+    var totalPages = Math.ceil(currentPosts.length / postsPerPage);
+    var titleEl = document.getElementById('calendarPostsModalTitle');
+    var bodyEl = document.getElementById('calendarPostsModalBody');
+    var pageInfo = document.getElementById('calendarPageInfo');
+    var prevBtn = document.getElementById('calendarPrevBtn');
+    var nextBtn = document.getElementById('calendarNextBtn');
+
+    titleEl.textContent = dateStr + ' - ' + currentPosts.length + '篇文章';
+
+    var start = (currentPostsPage - 1) * postsPerPage;
+    var end = start + postsPerPage;
+    var pagePosts = currentPosts.slice(start, end);
+
+    var html = '';
+    pagePosts.forEach(function(post) {
+        html += '<a href="' + post.path + '" class="list-group-item list-group-item-action text-decoration-none">';
+        html += '<i class="fa fa-file-text-o me-2 text-muted"></i>' + post.title;
+        html += '</a>';
+    });
+    bodyEl.innerHTML = html;
+
+    // 分页信息
+    if (currentPosts.length > postsPerPage) {
+        pageInfo.textContent = '第 ' + currentPostsPage + ' / ' + totalPages + ' 页';
+        prevBtn.style.display = currentPostsPage > 1 ? 'inline-block' : 'none';
+        nextBtn.style.display = currentPostsPage < totalPages ? 'inline-block' : 'none';
+    } else {
+        pageInfo.textContent = '';
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+    }
+}
+
+function changePage(offset) {
+    var totalPages = Math.ceil(currentPosts.length / postsPerPage);
+    currentPostsPage += offset;
+    if (currentPostsPage < 1) currentPostsPage = 1;
+    if (currentPostsPage > totalPages) currentPostsPage = totalPages;
+
+    var titleEl = document.getElementById('calendarPostsModalTitle');
+    renderPostsPage(titleEl.textContent.split(' - ')[0]);
+}
+</script>
+
+<style>
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    text-align: center;
+}
+.calendar-header {
+    padding: 4px 0;
+    font-weight: 600;
+}
+.calendar-cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.calendar-day:hover {
+    background-color: #f0f0f0;
+}
+.calendar-today {
+    background-color: #0d6efd !important;
+    color: white !important;
+}
+.calendar-has-post {
+    background-color: #e7f1ff;
+    color: #0d6efd;
+    font-weight: bold;
+}
+.calendar-has-post:hover {
+    background-color: #d0e7ff;
+}
+.calendar-disabled {
+    color: #ccc !important;
+    cursor: not-allowed !important;
+}
+.calendar-disabled:hover {
+    background-color: transparent !important;
+}
+</style>
